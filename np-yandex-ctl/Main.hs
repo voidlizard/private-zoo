@@ -26,7 +26,7 @@ doMenu = do
   let win = either (const Nothing) (readMay) r :: Maybe Int
 
   let pn = case win of
-             Nothing -> []
+             Nothing -> [ [qc|{encodeUtf8 "Запустить"}|] <> "\trun" ]
              Just _  -> [ "pause\tpause", "next\tnext", "" ]
 
   ls <- L8.readFile outLog <&> take 20  . reverse . L8.lines
@@ -55,6 +55,8 @@ doMenu = do
       let cmd = [qc|xdotool click --window {pretty win} 1 && xdotool key --window {pretty win} l|]
       void $
         runProcess (shell cmd)
+
+    [s,   "run"]  -> void $ runProcess_ (shell [qc|firefox https://music.yandex.ru/home &|])
 
     [s,   "copy"]  -> do
       let enc = byteStringInput (L8.fromStrict (encodeUtf8 s))
