@@ -13,33 +13,106 @@ build-type:         Simple
 extra-doc-files:    CHANGELOG.md
 -- extra-source-files:
 
-common warnings
-    ghc-options: -Wall
+common shared-stuff
+
+  ghc-options:         -Wall -fno-warn-unused-do-bind
+  default-language:    Haskell2010
+
+  default-extensions:
+                       ApplicativeDo
+                     , BangPatterns
+                     , BlockArguments
+                     , ConstraintKinds
+                     , DataKinds
+                     , DeriveDataTypeable
+                     , DeriveFoldable
+                     , DeriveFunctor
+                     , DeriveGeneric
+                     , DeriveTraversable
+                     , DerivingStrategies
+                     , DerivingVia
+                     , EmptyDataDecls
+                     , EmptyDataDeriving
+                     , FlexibleContexts
+                     , FlexibleInstances
+                     , FunctionalDependencies
+                     , GADTs
+                     , GeneralizedNewtypeDeriving
+                     , ImportQualifiedPost
+                     , InstanceSigs
+                     , LambdaCase
+                     , MultiParamTypeClasses
+                     , MultiWayIf
+                     , OverloadedLabels
+                     , OverloadedStrings
+                     , PatternSynonyms
+                     , QuasiQuotes
+                     , RankNTypes
+                     , RecordWildCards
+                     , ScopedTypeVariables
+                     , StandaloneDeriving
+                     , TemplateHaskell
+                     , TupleSections
+                     , TypeApplications
+                     , TypeFamilies
+                     , TypeOperators
+                     , ViewPatterns
+
+
+  build-depends:
+    base ^>=4.15.1.0
+    , async
+    , bytestring
+    , cache
+    , containers
+    , curl
+    , clock
+    , directory
+    , download-curl
+    , filepath
+    , filepattern
+    , hinotify
+    , interpolatedstring-perl6
+    , json-stream
+    , mtl
+    , prettyprinter
+    , safe
+    , stm
+    , streaming
+    , text
+    , time
+    , timestamp
+    , typed-process
+    , uniplate
+
+
 
 library
-    import:           warnings
-    exposed-modules:  MyLib
+    import:           shared-stuff
+    exposed-modules:  Zoo.Prelude
+                    , Zoo.YandexMusic
+                    , Zoo.Clock
+
     -- other-modules:
     -- other-extensions:
-    build-depends:    base ^>=4.15.1.0
     hs-source-dirs:   lib
     default-language: Haskell2010
 
 executable np-yandex
-    import:           warnings
+    import:           shared-stuff
+
+    ghc-options:
+      -O2
+      -threaded
+      -rtsopts
+      -- "-with-rtsopts=-N4 -A64m -AL256m -I0"
+      "-with-rtsopts=-N4 -M64M"
+
     main-is:          Main.hs
     -- other-modules:
     -- other-extensions:
-    build-depends:
-      base ^>=4.15.1.0, zoo
-      , async
-      , text
-      , containers
-      , bytestring
-      , filepath
-      , directory
-      , filepattern
 
+    build-depends: zoo
 
     hs-source-dirs:   np-yandex
     default-language: Haskell2010
