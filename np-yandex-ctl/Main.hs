@@ -47,7 +47,7 @@ doMenu = do
   case result of
     ["pause",  _]  -> do
       let cmd = [qc|xdotool click --window {pretty win} 1 && xdotool key --window {pretty win} space|]
-      putStrLn cmd
+      -- putStrLn cmd
       void $
         runProcess (shell cmd)
 
