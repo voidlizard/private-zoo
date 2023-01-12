@@ -6,6 +6,7 @@ module Zoo.Prelude
   , module System.IO
   , module Prettyprinter
   , module Zoo.Clock
+  , module Lens.Micro.Platform
   , atomically
   , qc
   , IsString(..)
@@ -21,6 +22,7 @@ import System.IO
 import System.Process.Typed
 import Text.InterpolatedString.Perl6 (qc)
 import Prettyprinter
+import Lens.Micro.Platform
 
 import Zoo.Clock
 

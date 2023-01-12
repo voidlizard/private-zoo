@@ -1,6 +1,7 @@
 module Main where
 
 import Zoo.Prelude
+import Zoo.Files
 import Zoo.YandexMusic
 
 import Control.Monad.IO.Class
@@ -32,17 +33,6 @@ import System.INotify
 -- var outdir = (path:dir $outfile)
 -- var outwinfile = $outdir/win-id
 
-tabFile :: FilePath
-tabFile = "/home/dmz/.mozilla/firefox/dmz/sessionstore-backups/recovery.jsonlz4"
-
-outDir :: IsString a => a
-outDir = "/home/dmz/.local/share/np-log/"
-
-outLog :: FilePath
-outLog = outDir </> "np-log"
-
-outWin :: FilePath
-outWin = outDir </> "np-win"
 
 main :: IO ()
 main = do
