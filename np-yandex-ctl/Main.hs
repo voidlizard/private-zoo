@@ -46,13 +46,13 @@ doMenu = do
 
   case result of
     ["pause",  _]  -> do
-      let cmd = [qc|xdotool click --window {pretty win} 1 && xdotool key --window {pretty win} space|]
+      let cmd = [qc|xdotool key --clearmodifiers --window {pretty win} space|]
       -- putStrLn cmd
       void $
         runProcess (shell cmd)
 
     ["next",   _]  -> do
-      let cmd = [qc|xdotool click --window {pretty win} 1 && xdotool key --window {pretty win} l|]
+      let cmd = [qc|xdotool key --clearmodifiers --window {pretty win} l|]
       void $
         runProcess (shell cmd)
 
