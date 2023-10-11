@@ -60,7 +60,7 @@ common shared-stuff
 
 
   build-depends:
-    base ^>=4.15.1.0
+    base >=4.15.1.0
     , async
     , bytestring
     , cache
